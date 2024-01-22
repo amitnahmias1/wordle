@@ -12,6 +12,7 @@ from pyad import aduser
 from pymongo import MongoClient
 import requests
 import win32api
+import creds
 
 langEN = True
 
@@ -40,7 +41,7 @@ def draw_starting_page():
     screen.blit(txt, (center_pos(0, 1000, txt.get_rect().width), 300))
     screen.blit(w, (center_pos(0, 1000, w.get_rect().width) + 0, 670))
     pygame.display.flip()
-draw_starting_page()
+#draw_starting_page()
 
 today = datetime.date.today()
 last = datetime.date(2022, 6, 25)
@@ -49,7 +50,7 @@ last = datetime.date(2022, 6, 25)
 # target = "ALLOW"
 # target = random.choice(word_list)
 
-client = MongoClient('mongodb://root:wordle@mongodb:27017/')
+client = MongoClient(creds.con_string)
 # db = client['wordle'] if langEN else client['hewordle']
 str_today = str(today)
 # collection1 = db[str_today]
@@ -1547,7 +1548,7 @@ def add_photo():
         response = requests.post(url, json=user_to_add, headers=headers)
     except:
         pass
-add_photo()
+#add_photo()
 
 # מייל מרכזי
 def email():
